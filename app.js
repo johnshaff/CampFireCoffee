@@ -47,7 +47,7 @@ var PikePlace = {
     for (var i = 0; i < hourOfOperation.length; i++) {
       cups = parseFloat((this.randomCustomerPerThatHour[i] * this.cupsPerCustomer).toFixed(1));
       this.cupsPerHour.push(cups);
-      this.totalDailyCups += cups;
+      this.totalDailyCups += Math.ceil(cups);
       this.totalHourlyBeans.push(Math.ceil(this.toGoBeansPerHour[i] + (this.cupsPerHour[i] * .0625)));
       this.cupBeansPerHour.push(this.cupsPerHour[i] * .0625);
       this.totalDailyCupBeans = Math.ceil((this.totalDailyCups * .0625));
@@ -139,7 +139,7 @@ var CapitolHill = {
     for (var i = 0; i < hourOfOperation.length; i++) {
       cups = parseFloat((this.randomCustomerPerThatHour[i] * this.cupsPerCustomer).toFixed(1));
       this.cupsPerHour.push(cups);
-      this.totalDailyCups += cups;
+      this.totalDailyCups += Math.ceil(cups);
       this.totalHourlyBeans.push(Math.ceil(this.toGoBeansPerHour[i] + (this.cupsPerHour[i] * .0625)));
       this.cupBeansPerHour.push(this.cupsPerHour[i] * .0625);
       this.totalDailyCupBeans = Math.ceil((this.totalDailyCups * .0625));
@@ -231,7 +231,7 @@ var SeattlePublicLibrary = {
     for (var i = 0; i < hourOfOperation.length; i++) {
       cups = parseFloat((this.randomCustomerPerThatHour[i] * this.cupsPerCustomer).toFixed(1));
       this.cupsPerHour.push(cups);
-      this.totalDailyCups += cups;
+      this.totalDailyCups += Math.ceil(cups);
       this.totalHourlyBeans.push(Math.ceil(this.toGoBeansPerHour[i] + (this.cupsPerHour[i] * .0625)));
       this.cupBeansPerHour.push(this.cupsPerHour[i] * .0625);
       this.totalDailyCupBeans = Math.ceil((this.totalDailyCups * .0625));
@@ -323,7 +323,7 @@ var SouthLakeUnion = {
     for (var i = 0; i < hourOfOperation.length; i++) {
       cups = parseFloat((this.randomCustomerPerThatHour[i] * this.cupsPerCustomer).toFixed(1));
       this.cupsPerHour.push(cups);
-      this.totalDailyCups += cups;
+      this.totalDailyCups += Math.ceil(cups);
       this.totalHourlyBeans.push(Math.ceil(this.toGoBeansPerHour[i] + (this.cupsPerHour[i] * .0625)));
       this.cupBeansPerHour.push(this.cupsPerHour[i] * .0625);
       this.totalDailyCupBeans = Math.ceil((this.totalDailyCups * .0625));
@@ -415,7 +415,7 @@ var SeaTacAirport = {
     for (var i = 0; i < hourOfOperation.length; i++) {
       cups = parseFloat((this.randomCustomerPerThatHour[i] * this.cupsPerCustomer).toFixed(1));
       this.cupsPerHour.push(cups);
-      this.totalDailyCups += cups;
+      this.totalDailyCups += Math.ceil(cups);
       this.totalHourlyBeans.push(Math.ceil(this.toGoBeansPerHour[i] + (this.cupsPerHour[i] * .0625)));
       this.cupBeansPerHour.push(this.cupsPerHour[i] * .0625);
       this.totalDailyCupBeans = Math.ceil((this.totalDailyCups * .0625));
