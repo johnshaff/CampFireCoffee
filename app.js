@@ -38,7 +38,7 @@ var PikePlace = {
     for (var i = 0; i < hourOfOperation.length; i++) {
       beans = parseFloat((this.randomCustomerPerThatHour[i] * this.lbsPerCustomerToGoBeans).toFixed(1));
       this.toGoBeansPerHour.push(beans);
-      this.totalDailyToGoBeans += beans;
+      this.totalDailyToGoBeans += Math.ceil(beans);
     }
   },
 
@@ -48,10 +48,10 @@ var PikePlace = {
       cups = parseFloat((this.randomCustomerPerThatHour[i] * this.cupsPerCustomer).toFixed(1));
       this.cupsPerHour.push(cups);
       this.totalDailyCups += cups;
-      this.totalHourlyBeans.push(this.toGoBeansPerHour[i] + (this.cupsPerHour[i] * .0625));
+      this.totalHourlyBeans.push(Math.ceil(this.toGoBeansPerHour[i] + (this.cupsPerHour[i] * .0625)));
       this.cupBeansPerHour.push(this.cupsPerHour[i] * .0625);
       this.totalDailyCupBeans = Math.ceil((this.totalDailyCups * .0625));
-      this.totalDailyBeans = this.totalDailyToGoBeans + this.totalDailyCupBeans;
+      this.totalDailyBeans = Math.ceil(this.totalDailyToGoBeans + this.totalDailyCupBeans);
     }
   },
 
@@ -130,7 +130,7 @@ var CapitolHill = {
     for (var i = 0; i < hourOfOperation.length; i++) {
       beans = parseFloat((this.randomCustomerPerThatHour[i] * this.lbsPerCustomerToGoBeans).toFixed(1));
       this.toGoBeansPerHour.push(beans);
-      this.totalDailyToGoBeans += beans;
+      this.totalDailyToGoBeans += Math.ceil(beans);
     }
   },
 
@@ -140,10 +140,10 @@ var CapitolHill = {
       cups = parseFloat((this.randomCustomerPerThatHour[i] * this.cupsPerCustomer).toFixed(1));
       this.cupsPerHour.push(cups);
       this.totalDailyCups += cups;
-      this.totalHourlyBeans.push(this.toGoBeansPerHour[i] + (this.cupsPerHour[i] * .0625));
+      this.totalHourlyBeans.push(Math.ceil(this.toGoBeansPerHour[i] + (this.cupsPerHour[i] * .0625)));
       this.cupBeansPerHour.push(this.cupsPerHour[i] * .0625);
       this.totalDailyCupBeans = Math.ceil((this.totalDailyCups * .0625));
-      this.totalDailyBeans = this.totalDailyToGoBeans + this.totalDailyCupBeans;
+      this.totalDailyBeans = Math.ceil(this.totalDailyToGoBeans + this.totalDailyCupBeans);
     }
   },
 
@@ -222,7 +222,7 @@ var SeattlePublicLibrary = {
     for (var i = 0; i < hourOfOperation.length; i++) {
       beans = parseFloat((this.randomCustomerPerThatHour[i] * this.lbsPerCustomerToGoBeans).toFixed(1));
       this.toGoBeansPerHour.push(beans);
-      this.totalDailyToGoBeans += beans;
+      this.totalDailyToGoBeans += Math.ceil(beans);
     }
   },
 
@@ -232,10 +232,10 @@ var SeattlePublicLibrary = {
       cups = parseFloat((this.randomCustomerPerThatHour[i] * this.cupsPerCustomer).toFixed(1));
       this.cupsPerHour.push(cups);
       this.totalDailyCups += cups;
-      this.totalHourlyBeans.push(this.toGoBeansPerHour[i] + (this.cupsPerHour[i] * .0625));
+      this.totalHourlyBeans.push(Math.ceil(this.toGoBeansPerHour[i] + (this.cupsPerHour[i] * .0625)));
       this.cupBeansPerHour.push(this.cupsPerHour[i] * .0625);
       this.totalDailyCupBeans = Math.ceil((this.totalDailyCups * .0625));
-      this.totalDailyBeans = this.totalDailyToGoBeans + this.totalDailyCupBeans;
+      this.totalDailyBeans = Math.ceil(this.totalDailyToGoBeans + this.totalDailyCupBeans);
     }
   },
 
@@ -279,8 +279,6 @@ var SeattlePublicLibrary = {
 
 SeattlePublicLibrary.render();
 
-CapitolHill.render();
-
 var SouthLakeUnion = {
   locationName: 'South Lake Union',
   minCustomersHour: 14,
@@ -316,7 +314,7 @@ var SouthLakeUnion = {
     for (var i = 0; i < hourOfOperation.length; i++) {
       beans = parseFloat((this.randomCustomerPerThatHour[i] * this.lbsPerCustomerToGoBeans).toFixed(1));
       this.toGoBeansPerHour.push(beans);
-      this.totalDailyToGoBeans += beans;
+      this.totalDailyToGoBeans += Math.ceil(beans);
     }
   },
 
@@ -326,10 +324,10 @@ var SouthLakeUnion = {
       cups = parseFloat((this.randomCustomerPerThatHour[i] * this.cupsPerCustomer).toFixed(1));
       this.cupsPerHour.push(cups);
       this.totalDailyCups += cups;
-      this.totalHourlyBeans.push(this.toGoBeansPerHour[i] + (this.cupsPerHour[i] * .0625));
+      this.totalHourlyBeans.push(Math.ceil(this.toGoBeansPerHour[i] + (this.cupsPerHour[i] * .0625)));
       this.cupBeansPerHour.push(this.cupsPerHour[i] * .0625);
       this.totalDailyCupBeans = Math.ceil((this.totalDailyCups * .0625));
-      this.totalDailyBeans = this.totalDailyToGoBeans + this.totalDailyCupBeans;
+      this.totalDailyBeans = Math.ceil(this.totalDailyToGoBeans + this.totalDailyCupBeans);
     }
   },
 
@@ -408,7 +406,7 @@ var SeaTacAirport = {
     for (var i = 0; i < hourOfOperation.length; i++) {
       beans = parseFloat((this.randomCustomerPerThatHour[i] * this.lbsPerCustomerToGoBeans).toFixed(1));
       this.toGoBeansPerHour.push(beans);
-      this.totalDailyToGoBeans += beans;
+      this.totalDailyToGoBeans += Math.ceil(beans);
     }
   },
 
@@ -418,10 +416,10 @@ var SeaTacAirport = {
       cups = parseFloat((this.randomCustomerPerThatHour[i] * this.cupsPerCustomer).toFixed(1));
       this.cupsPerHour.push(cups);
       this.totalDailyCups += cups;
-      this.totalHourlyBeans.push(this.toGoBeansPerHour[i] + (this.cupsPerHour[i] * .0625));
+      this.totalHourlyBeans.push(Math.ceil(this.toGoBeansPerHour[i] + (this.cupsPerHour[i] * .0625)));
       this.cupBeansPerHour.push(this.cupsPerHour[i] * .0625);
       this.totalDailyCupBeans = Math.ceil((this.totalDailyCups * .0625));
-      this.totalDailyBeans = this.totalDailyToGoBeans + this.totalDailyCupBeans;
+      this.totalDailyBeans = Math.ceil(this.totalDailyToGoBeans + this.totalDailyCupBeans);
     }
   },
 
