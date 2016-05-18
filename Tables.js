@@ -4,6 +4,9 @@
 var hourOfOperation = ['6:00am: ', '7:00am: ', '8:00am: ', '9:00am: ', '10:00am: ', '11:00am: ', '12:00pm: ', '1:00pm: ', '2:00pm: ', '3:00pm: ', '4:00pm: ', '5:00pm: ', '6:00pm: ', '7:00pm: ', '8:00pm: '];
 
 var locationsList = [];
+var objectList = [];
+var hourlyEmpTotals = [];
+var hourlyBeanTotals = [];
 
 // var employeesNeededPerHour = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
 
@@ -34,6 +37,7 @@ function Locations (locationName, minCustomersHour, maxCustomersHour, cupsPerCus
 
   this.totalDailyCups = 0;
   this.employeesNeededPerHour = [];
+  this.storeWideHourlyEmployeeDemand = [];
 };
 
 Locations.prototype.calculateCustomerTraffic = function (min, max) {
@@ -66,8 +70,20 @@ Locations.prototype.hourlyCupTotal = function () {
   };
 };
 
-Locations.prototype.updateLocationsList = function() {
+Locations.prototype.updateLocationsList = function () {
   locationsList.push(this.locationName);
+};
+
+Locations.prototype.updateObjectList = function () {
+  objectList.push(this);
+};
+
+// I want a function that adds the hourly total for each location and pushes the answer into an arrayTableContent
+
+Locations.prototype.calcEmployeeDemand = function () {
+  var total = (pikePlace.employeesNeededPerHour[0] + capitolHill.employeesNeededPerHour[0] + seattlePublicLibrary.employeesNeededPerHour[0] + southLakeUnion.employeesNeededPerHour[0] + seaTacAirport.employeesNeededPerHour[0]);
+  console.log(total);
+  hourlyEmpTotals.push(total);
 };
 
 Locations.prototype.allCalcs = function() {
@@ -75,6 +91,8 @@ Locations.prototype.allCalcs = function() {
   this.hourlyToGoBeansTotal();
   this.hourlyCupTotal();
   this.updateLocationsList();
+  this.updateObjectList();
+  this.calcEmployeeDemand();
 };
 
 var pikePlace = new Locations ('Pike Place', 14, 35, 1.2, .34);
@@ -112,12 +130,16 @@ var buildBaristasTable = function () {
     baristasTableElement.appendChild(tRowForTimesHeader); // Appends the table row to the table
   };
 
-
 };
 buildBaristasTable();
 var populateBaristasTable = function () {
+
   var tRowForEmployeesNeeded = document.createElement('tr'); // Creates a new table row
-  for (var i = -1; i < hourOfOperation.length; i++) { // Sets conditional counter to the number of operating hours
+  var locationElement = document.createElement('td');
+  locationElement.textContent = locationsList[0];
+  tRowForEmployeesNeeded.appendChild(locationElement);
+
+  for (var i = 0; i < hourOfOperation.length; i++) { // Sets conditional counter to the number of operating hours
     var tRowDataEmployees = document.createElement('td'); // Creates a new peice of table data
     tRowDataEmployees.textContent = pikePlace.employeesNeededPerHour[i]; // Sets the value of that new peice to emps needed
     tRowForEmployeesNeeded.appendChild(tRowDataEmployees); // Appends the new table data to the new table row
@@ -125,7 +147,11 @@ var populateBaristasTable = function () {
   };
 
   var tRowForEmployeesNeeded = document.createElement('tr'); // Creates a new table row
-  for (var i = -1; i < hourOfOperation.length; i++) { // Sets conditional counter to the number of operating hours
+  var locationElement2 = document.createElement('td'); // Creating new td element
+  locationElement2.textContent = locationsList[1]; // filling it with a location
+  tRowForEmployeesNeeded.appendChild(locationElement2); // appending it to barista row
+
+  for (var i = 0; i < hourOfOperation.length; i++) { // Sets conditional counter to the number of operating hours
     var tRowDataEmployees = document.createElement('td'); // Creates a new peice of table data
     tRowDataEmployees.textContent = capitolHill.employeesNeededPerHour[i]; // Sets the value of that new peice to emps needed
     tRowForEmployeesNeeded.appendChild(tRowDataEmployees); // Appends the new table data to the new table row
@@ -133,7 +159,11 @@ var populateBaristasTable = function () {
   };
 
   var tRowForEmployeesNeeded = document.createElement('tr'); // Creates a new table row
-  for (var i = -1; i < hourOfOperation.length; i++) { // Sets conditional counter to the number of operating hours
+  var locationElement3 = document.createElement('td'); // Creating new td element
+  locationElement3.textContent = locationsList[2]; // filling it with a location
+  tRowForEmployeesNeeded.appendChild(locationElement3); // appending it to barista row
+
+  for (var i = 0; i < hourOfOperation.length; i++) { // Sets conditional counter to the number of operating hours
     var tRowDataEmployees = document.createElement('td'); // Creates a new peice of table data
     tRowDataEmployees.textContent = seattlePublicLibrary.employeesNeededPerHour[i]; // Sets the value of that new peice to emps needed
     tRowForEmployeesNeeded.appendChild(tRowDataEmployees); // Appends the new table data to the new table row
@@ -141,7 +171,11 @@ var populateBaristasTable = function () {
   };
 
   var tRowForEmployeesNeeded = document.createElement('tr'); // Creates a new table row
-  for (var i = -1; i < hourOfOperation.length; i++) { // Sets conditional counter to the number of operating hours
+  var locationElement4 = document.createElement('td'); // Creating new td element
+  locationElement4.textContent = locationsList[3]; // filling it with a location
+  tRowForEmployeesNeeded.appendChild(locationElement4); // appending it to barista row
+
+  for (var i = 0; i < hourOfOperation.length; i++) { // Sets conditional counter to the number of operating hours
     var tRowDataEmployees = document.createElement('td'); // Creates a new peice of table data
     tRowDataEmployees.textContent = southLakeUnion.employeesNeededPerHour[i]; // Sets the value of that new peice to emps needed
     tRowForEmployeesNeeded.appendChild(tRowDataEmployees); // Appends the new table data to the new table row
@@ -149,12 +183,28 @@ var populateBaristasTable = function () {
   };
 
   var tRowForEmployeesNeeded = document.createElement('tr'); // Creates a new table row
-  for (var i = -1; i < hourOfOperation.length; i++) { // Sets conditional counter to the number of operating hours
+  var locationElement5 = document.createElement('td'); // Creating new td element
+  locationElement5.textContent = locationsList[4]; // filling it with a location
+  tRowForEmployeesNeeded.appendChild(locationElement5); // appending it to barista row
+
+  for (var i = 0; i < hourOfOperation.length; i++) { // Sets conditional counter to the number of operating hours
     var tRowDataEmployees = document.createElement('td'); // Creates a new peice of table data
     tRowDataEmployees.textContent = seaTacAirport.employeesNeededPerHour[i]; // Sets the value of that new peice to emps needed
     tRowForEmployeesNeeded.appendChild(tRowDataEmployees); // Appends the new table data to the new table row
     baristasTableElement.appendChild(tRowForEmployeesNeeded); // Appends the new table row to the table
   };
+
+  var totalsRow = document.createElement('tr'); // creating a new row element
+  var totalsElement = document.createElement('td'); // creating a new td element
+  totalsElement.textContent = 'Totals:'; // filling it with something
+  totalsRow.appendChild(totalsElement);
+  baristasTableElement.appendChild(totalsRow); // appending it to
+
+  // for (var = i; i < hourOfOperation.length; i++) {
+  //   var columnTotals = document.createElement('td');
+  //   columnTotals.textContent = allStoreHourlyEmps[]
+  // };
+
 };
 populateBaristasTable();
 
