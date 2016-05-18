@@ -105,17 +105,19 @@ BodyElement.appendChild(baristasTableElement);
 
 var buildBaristasTable = function () {
   var tRowForTimesHeader = document.createElement('tr'); // Creates a new table row
-  for (var i = 0; i < hourOfOperation.length; i++) { // Sets conditional counter to the number of operating hours
+  for (var i = -1; i < hourOfOperation.length; i++) { // Sets conditional counter to the number of operating hours
     var tRowWithHeaderTimes = document.createElement('th'); // Creates a new table header element
     tRowWithHeaderTimes.textContent = hourOfOperation[i]; // Sets the value of that new header element to an hour of operation
     tRowForTimesHeader.appendChild(tRowWithHeaderTimes); // Appends the header element to the table row
     baristasTableElement.appendChild(tRowForTimesHeader); // Appends the table row to the table
   };
+
+
 };
 buildBaristasTable();
 var populateBaristasTable = function () {
   var tRowForEmployeesNeeded = document.createElement('tr'); // Creates a new table row
-  for (var i = 0; i < hourOfOperation.length; i++) { // Sets conditional counter to the number of operating hours
+  for (var i = -1; i < hourOfOperation.length; i++) { // Sets conditional counter to the number of operating hours
     var tRowDataEmployees = document.createElement('td'); // Creates a new peice of table data
     tRowDataEmployees.textContent = pikePlace.employeesNeededPerHour[i]; // Sets the value of that new peice to emps needed
     tRowForEmployeesNeeded.appendChild(tRowDataEmployees); // Appends the new table data to the new table row
@@ -123,7 +125,7 @@ var populateBaristasTable = function () {
   };
 
   var tRowForEmployeesNeeded = document.createElement('tr'); // Creates a new table row
-  for (var i = 0; i < hourOfOperation.length; i++) { // Sets conditional counter to the number of operating hours
+  for (var i = -1; i < hourOfOperation.length; i++) { // Sets conditional counter to the number of operating hours
     var tRowDataEmployees = document.createElement('td'); // Creates a new peice of table data
     tRowDataEmployees.textContent = capitolHill.employeesNeededPerHour[i]; // Sets the value of that new peice to emps needed
     tRowForEmployeesNeeded.appendChild(tRowDataEmployees); // Appends the new table data to the new table row
@@ -131,7 +133,7 @@ var populateBaristasTable = function () {
   };
 
   var tRowForEmployeesNeeded = document.createElement('tr'); // Creates a new table row
-  for (var i = 0; i < hourOfOperation.length; i++) { // Sets conditional counter to the number of operating hours
+  for (var i = -1; i < hourOfOperation.length; i++) { // Sets conditional counter to the number of operating hours
     var tRowDataEmployees = document.createElement('td'); // Creates a new peice of table data
     tRowDataEmployees.textContent = seattlePublicLibrary.employeesNeededPerHour[i]; // Sets the value of that new peice to emps needed
     tRowForEmployeesNeeded.appendChild(tRowDataEmployees); // Appends the new table data to the new table row
@@ -139,7 +141,7 @@ var populateBaristasTable = function () {
   };
 
   var tRowForEmployeesNeeded = document.createElement('tr'); // Creates a new table row
-  for (var i = 0; i < hourOfOperation.length; i++) { // Sets conditional counter to the number of operating hours
+  for (var i = -1; i < hourOfOperation.length; i++) { // Sets conditional counter to the number of operating hours
     var tRowDataEmployees = document.createElement('td'); // Creates a new peice of table data
     tRowDataEmployees.textContent = southLakeUnion.employeesNeededPerHour[i]; // Sets the value of that new peice to emps needed
     tRowForEmployeesNeeded.appendChild(tRowDataEmployees); // Appends the new table data to the new table row
@@ -147,7 +149,7 @@ var populateBaristasTable = function () {
   };
 
   var tRowForEmployeesNeeded = document.createElement('tr'); // Creates a new table row
-  for (var i = 0; i < hourOfOperation.length; i++) { // Sets conditional counter to the number of operating hours
+  for (var i = -1; i < hourOfOperation.length; i++) { // Sets conditional counter to the number of operating hours
     var tRowDataEmployees = document.createElement('td'); // Creates a new peice of table data
     tRowDataEmployees.textContent = seaTacAirport.employeesNeededPerHour[i]; // Sets the value of that new peice to emps needed
     tRowForEmployeesNeeded.appendChild(tRowDataEmployees); // Appends the new table data to the new table row
