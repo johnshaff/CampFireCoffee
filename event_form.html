@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+ <head>
+  <meta charset="UTF-8">
+  <title>CampFire Coffee Admin</title>
+  <link rel="stylesheet" type="text/css" href="event_form.css">
+ </head>
+
+ <body>
+
+  <h1>CampFire Coffee Form</h1>
+
+  <form id="coffeeForm">
+    <fieldset>
+      <legend>Create New Store Form</legend>
+
+      <label for="locationName">Location Name: </label> <!--'For' knows to look for a 'name' equal to "locationName"-->
+      <input name="locationName" type="text"/>
+
+      <label for="minCustomersHour">Min Cust/Hr: </label>
+      <input name="minCustomersHour" type="number" />
+
+      <label for="maxCustomersHour">Max Cust/Hr: </label>
+      <input name="maxCustomersHour" type="number" />
+
+      <label for="cupsPerCustomer">Cups/Cust: </label>
+      <input name="cupsPerCustomer" type="number"/>
+
+      <label for="lbsPerCustomerToGoBeans">BeansToGo/Cust: </label>
+      <input name="lbsPerCustomerToGoBeans" type="number"/>
+
+      <button id="submitButton" type="submit">Create new Store!</button>
+    </fieldset>
+  </form>
+
+  <button id="clearFormFields">Clear Form :) </button>
+
+
+  <section id='Pin'>
+
+  </section>
+
+
+  <script src="event_form.js" type="text/javascript"></script>
+ </body>
+</html>

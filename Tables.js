@@ -111,7 +111,7 @@ var buildBaristasTable = function () {
 buildBaristasTable();
 // Populates the Barista Table with hourly Barista Demand by Location
 var populateBaristasTable = function () {
-
+  //Location 0
   var tRowForEmployeesNeeded = document.createElement('tr');
   var locationElement = document.createElement('td');
   locationElement.textContent = locationsList[0];
@@ -123,7 +123,7 @@ var populateBaristasTable = function () {
     tRowForEmployeesNeeded.appendChild(tRowDataEmployees); // Appends the new table data to the new table row
     baristasTableElement.appendChild(tRowForEmployeesNeeded); // Appends the new table row to the table
   };
-
+  //Location 1
   var tRowForEmployeesNeeded = document.createElement('tr');
   var locationElement2 = document.createElement('td');
   locationElement2.textContent = locationsList[1];
@@ -135,7 +135,7 @@ var populateBaristasTable = function () {
     tRowForEmployeesNeeded.appendChild(tRowDataEmployees);
     baristasTableElement.appendChild(tRowForEmployeesNeeded);
   };
-
+  //Location 2
   var tRowForEmployeesNeeded = document.createElement('tr');
   var locationElement3 = document.createElement('td');
   locationElement3.textContent = locationsList[2];
@@ -147,7 +147,7 @@ var populateBaristasTable = function () {
     tRowForEmployeesNeeded.appendChild(tRowDataEmployees);
     baristasTableElement.appendChild(tRowForEmployeesNeeded);
   };
-
+  //Location 3
   var tRowForEmployeesNeeded = document.createElement('tr');
   var locationElement4 = document.createElement('td');
   locationElement4.textContent = locationsList[3];
@@ -159,7 +159,7 @@ var populateBaristasTable = function () {
     tRowForEmployeesNeeded.appendChild(tRowDataEmployees);
     baristasTableElement.appendChild(tRowForEmployeesNeeded);
   };
-
+  //Location 4
   var tRowForEmployeesNeeded = document.createElement('tr');
   var locationElement5 = document.createElement('td');
   locationElement5.textContent = locationsList[4];
