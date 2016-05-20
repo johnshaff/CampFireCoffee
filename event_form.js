@@ -131,22 +131,103 @@ function createNewStore(event) {
   event.target.lbsPerCustomerToGoBeans.value = null;
 
   //Render the Barista table
-  var createBaristaTable = function () {
-    baristaHourlyTotals = [];
-    baristaDailyTotals = [];
-    companyBaristaDailyTotal = 0;
+//   var createBaristaTable = function () {
+//     baristaHourlyTotals = [];
+//     baristaDailyTotals = [];
+//     companyBaristaDailyTotal = 0;
+//
+//     var baristaTable = document.createElement('table'); // Creates table
+//     sectionElement.appendChild(baristaTable); // Appends table to section
+//
+//     var baristaTableHeader = function () {
+//       var timeRow = document.createElement('tr');
+//       var emptyHead = document.createElement('th');
+//       timeRow.appendChild(emptyHead);
+//       var dailyLocationTotal = document.createElement('th');
+//       dailyLocationTotal.textContent = 'Daily Location Total';
+//       timeRow.appendChild(dailyLocationTotal);
+//       baristaTable.appendChild(timeRow); // Appends the table row to the table
+//
+//       for (var i = 0; i < hourOfOperation.length; i++) {
+//         var times = document.createElement('th');
+//         times.textContent = hourOfOperation[i];
+//         timeRow.appendChild(times); // Appends the header element to the table row
+//       };
+//     };
+//     baristaTableHeader();
+//
+//     var baristaTableData = function () {
+//       for (var i = 0; i < hourOfOperation.length; i++) { // Zeros out baristaArray
+//         baristaHourlyTotals.push(0);
+//       }
+//       for (var i = 0; i < objectList.length; i++) {
+//         baristaDailyTotals.push(0);
+//       }
+//       //prob going to have to zero an array
+//       for (var i = 0; i < objectList.length; i++) {
+//         var baristaRow = document.createElement('tr'); //Creates new row
+//         var baristaLocation = document.createElement('td'); //Creates new td
+//         baristaLocation.textContent = objectList[i].locationName; //Gives td locationName
+//         baristaRow.appendChild(baristaLocation); //Appends td to new row
+//         var dailyTotal = document.createElement('td'); //Creates baristaDailyTotal
+//         //
+//         baristaRow.appendChild(dailyTotal);
+//         baristaTable.appendChild(baristaRow);
+//         for (var j = 0; j < hourOfOperation.length; j++) {
+//           var objectHolder = objectList[i]; //Brings in pikePlace instance
+//           var baristaNums = document.createElement('td'); //Creates new td
+//           baristaNums.textContent = objectHolder.employeesNeededPerHour[j]; //Puts baristaNums into td element
+//           baristaHourlyTotals[j] += parseInt(baristaNums.textContent);
+//           baristaDailyTotals[i] += parseInt(baristaNums.textContent);
+//           baristaRow.appendChild(baristaNums); //Appends the td to the row
+//         }
+//         dailyTotal.textContent = baristaDailyTotals[i];
+//       }
+//     };
+//     baristaTableData();
+//
+//     var baristaTableFooter = function () {
+//       var totalsRow = document.createElement('tr');
+//       var total = document.createElement('td');
+//       var companyTotal = document.createElement('td');
+//       for (i = 0; i < baristaDailyTotals.length; i++) {
+//         companyBaristaDailyTotal += baristaDailyTotals[i];
+//       }
+//       total.textContent = 'Totals:';
+//       totalsRow.appendChild(total);
+//       companyTotal.textContent = companyBaristaDailyTotal;
+//       totalsRow.appendChild(companyTotal);
+//       baristaTable.appendChild(totalsRow);
+//
+//       //Populates the totals row from the baristaHourlyTotals array
+//       for (var i = 0; i < hourOfOperation.length; i++) {
+//         var total = document.createElement('td');
+//         total.textContent = baristaHourlyTotals[i];
+//         totalsRow.appendChild(total);
+//       };
+//     };
+//     baristaTableFooter();
+//   };
+//   createBaristaTable();
+//   console.log(sectionElement);
+// };
 
-    var baristaTable = document.createElement('table'); // Creates table
-    sectionElement.appendChild(baristaTable); // Appends table to section
+  var createBeanTable = function () {
+    beanHourlyTotals = [];
+    beanDailyTotals = [];
+    companyBeanDailyTotal = 0;
 
-    var baristaTableHeader = function () {
+    var beanTable = document.createElement('table'); // Creates table
+    sectionElement.appendChild(beanTable); // Appends table to section
+
+    var beanTableHeader = function () {
       var timeRow = document.createElement('tr');
       var emptyHead = document.createElement('th');
       timeRow.appendChild(emptyHead);
       var dailyLocationTotal = document.createElement('th');
       dailyLocationTotal.textContent = 'Daily Location Total';
       timeRow.appendChild(dailyLocationTotal);
-      baristaTable.appendChild(timeRow); // Appends the table row to the table
+      beanTable.appendChild(timeRow); // Appends the table row to the table
 
       for (var i = 0; i < hourOfOperation.length; i++) {
         var times = document.createElement('th');
@@ -154,60 +235,60 @@ function createNewStore(event) {
         timeRow.appendChild(times); // Appends the header element to the table row
       };
     };
-    baristaTableHeader();
+    beanTableHeader();
 
-    var baristaTableData = function () {
+    var beanTableData = function () {
       for (var i = 0; i < hourOfOperation.length; i++) { // Zeros out baristaArray
-        baristaHourlyTotals.push(0);
+        beanHourlyTotals.push(0);
       }
       for (var i = 0; i < objectList.length; i++) {
-        baristaDailyTotals.push(0);
+        beanDailyTotals.push(0);
       }
       //prob going to have to zero an array
       for (var i = 0; i < objectList.length; i++) {
-        var baristaRow = document.createElement('tr'); //Creates new row
-        var baristaLocation = document.createElement('td'); //Creates new td
-        baristaLocation.textContent = objectList[i].locationName; //Gives td locationName
-        baristaRow.appendChild(baristaLocation); //Appends td to new row
+        var beanRow = document.createElement('tr'); //Creates new row
+        var beanLocation = document.createElement('td'); //Creates new td
+        beanLocation.textContent = objectList[i].locationName; //Gives td locationName
+        beanRow.appendChild(beanLocation); //Appends td to new row
         var dailyTotal = document.createElement('td'); //Creates baristaDailyTotal
         //
-        baristaRow.appendChild(dailyTotal);
-        baristaTable.appendChild(baristaRow);
+        beanRow.appendChild(dailyTotal);
+        beanTable.appendChild(beanRow);
         for (var j = 0; j < hourOfOperation.length; j++) {
           var objectHolder = objectList[i]; //Brings in pikePlace instance
-          var baristaNums = document.createElement('td'); //Creates new td
-          baristaNums.textContent = objectHolder.employeesNeededPerHour[j]; //Puts baristaNums into td element
-          baristaHourlyTotals[j] += parseInt(baristaNums.textContent);
-          baristaDailyTotals[i] += parseInt(baristaNums.textContent);
-          baristaRow.appendChild(baristaNums); //Appends the td to the row
+          var beanNums = document.createElement('td'); //Creates new td
+          beanNums.textContent = objectHolder.employeesNeededPerHour[j]; //Puts beanNums into td element
+          beanHourlyTotals[j] += parseInt(beanNums.textContent);
+          beanDailyTotals[i] += parseInt(beanNums.textContent);
+          beanRow.appendChild(beanNums); //Appends the td to the row
         }
-        dailyTotal.textContent = baristaDailyTotals[i];
+        dailyTotal.textContent = beanDailyTotals[i];
       }
     };
-    baristaTableData(); 
+    beanTableData();
 
-    var baristaTableFooter = function () {
+    var beanTableFooter = function () {
       var totalsRow = document.createElement('tr');
       var total = document.createElement('td');
       var companyTotal = document.createElement('td');
-      for (i = 0; i < baristaDailyTotals.length; i++) {
-        companyBaristaDailyTotal += baristaDailyTotals[i];
+      for (i = 0; i < beanDailyTotals.length; i++) {
+        companyBeanDailyTotal += beanDailyTotals[i];
       }
       total.textContent = 'Totals:';
       totalsRow.appendChild(total);
-      companyTotal.textContent = companyBaristaDailyTotal;
+      companyTotal.textContent = companyBeanDailyTotal;
       totalsRow.appendChild(companyTotal);
-      baristaTable.appendChild(totalsRow);
+      beanTable.appendChild(totalsRow);
 
-      //Populates the totals row from the baristaHourlyTotals array
+      //Populates the totals row from the beanHourlyTotals array
       for (var i = 0; i < hourOfOperation.length; i++) {
         var total = document.createElement('td');
-        total.textContent = baristaHourlyTotals[i];
+        total.textContent = beanHourlyTotals[i];
         totalsRow.appendChild(total);
       };
     };
-    baristaTableFooter();
+    beanTableFooter();
   };
-  createBaristaTable();
+  createBeanTable();
   console.log(sectionElement);
 };
