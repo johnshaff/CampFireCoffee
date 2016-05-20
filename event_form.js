@@ -1,17 +1,9 @@
 //All global variables
 var hourOfOperation = ['6:00am: ', '7:00am: ', '8:00am: ', '9:00am: ', '10:00am: ', '11:00am: ', '12:00pm: ', '1:00pm: ', '2:00pm: ', '3:00pm: ', '4:00pm: ', '5:00pm: ', '6:00pm: ', '7:00pm: ', '8:00pm: '];
-var locationsList = [];
-var hourlyEmpTotals = [];
-var hourlyBeanTotals = [];
 var objectList = [];
-
-// var beanHourlyTotals = [];
-// var beanDailyTotals = [];
-// var companyBeanDailyTotal = 0;
-
 var submitButton = document.getElementById('coffeeForm'); //Strange. This upsetifies me.
-var sectionElement = document.getElementById('Pin'); //Grabs section
-
+var baristaSection = document.getElementById('baristaTable'); //Grabs section
+var beanSection = document.getElementById('beanTable'); //Grabs section
 //Constructor Funtion
 function Locations (locationName, minCustomersHour, maxCustomersHour, cupsPerCustomer, lbsPerCustomerToGoBeans) {
   this.locationName = locationName;
@@ -68,10 +60,6 @@ Locations.prototype.hourlyCupTotal = function () {
   };
 };
 
-Locations.prototype.updateLocationsList = function () {
-  locationsList.push(this.locationName);
-};
-
 Locations.prototype.updateObjectList = function () {
   objectList.push(this);
 };
@@ -80,7 +68,6 @@ Locations.prototype.allCalcs = function() {
   this.calculateCustomerTraffic(this.minCustomersHour, this.maxCustomersHour);
   this.hourlyToGoBeansTotal();
   this.hourlyCupTotal();
-  this.updateLocationsList();
   this.updateObjectList();
 };
 
@@ -104,8 +91,10 @@ submitButton.addEventListener('submit', createNewStore);
 //Submit Event Handler. Takes in form field data and renders two tables.
 function createNewStore(event) {
   event.preventDefault();
-  sectionElement.textContent = '';
-  sectionElement = document.getElementById('Pin');
+  baristaSection.textContent = '';
+  baristaSection = document.getElementById('baristaTable');
+  beanSection.textContent = '';
+  beanSection = document.getElementById('beanTable');
 
   if (!event.target.locationName.value || !event.target.minCustomersHour.value || !event.target.maxCustomersHour.value || !event.target.cupsPerCustomer.value || !event.target.lbsPerCustomerToGoBeans.value) {
     return alert('Please complete all fields');
@@ -130,87 +119,86 @@ function createNewStore(event) {
   event.target.cupsPerCustomer.value = null;
   event.target.lbsPerCustomerToGoBeans.value = null;
 
-  //Render the Barista table
-//   var createBaristaTable = function () {
-//     baristaHourlyTotals = [];
-//     baristaDailyTotals = [];
-//     companyBaristaDailyTotal = 0;
-//
-//     var baristaTable = document.createElement('table'); // Creates table
-//     sectionElement.appendChild(baristaTable); // Appends table to section
-//
-//     var baristaTableHeader = function () {
-//       var timeRow = document.createElement('tr');
-//       var emptyHead = document.createElement('th');
-//       timeRow.appendChild(emptyHead);
-//       var dailyLocationTotal = document.createElement('th');
-//       dailyLocationTotal.textContent = 'Daily Location Total';
-//       timeRow.appendChild(dailyLocationTotal);
-//       baristaTable.appendChild(timeRow); // Appends the table row to the table
-//
-//       for (var i = 0; i < hourOfOperation.length; i++) {
-//         var times = document.createElement('th');
-//         times.textContent = hourOfOperation[i];
-//         timeRow.appendChild(times); // Appends the header element to the table row
-//       };
-//     };
-//     baristaTableHeader();
-//
-//     var baristaTableData = function () {
-//       for (var i = 0; i < hourOfOperation.length; i++) { // Zeros out baristaArray
-//         baristaHourlyTotals.push(0);
-//       }
-//       for (var i = 0; i < objectList.length; i++) {
-//         baristaDailyTotals.push(0);
-//       }
-//       //prob going to have to zero an array
-//       for (var i = 0; i < objectList.length; i++) {
-//         var baristaRow = document.createElement('tr'); //Creates new row
-//         var baristaLocation = document.createElement('td'); //Creates new td
-//         baristaLocation.textContent = objectList[i].locationName; //Gives td locationName
-//         baristaRow.appendChild(baristaLocation); //Appends td to new row
-//         var dailyTotal = document.createElement('td'); //Creates baristaDailyTotal
-//         //
-//         baristaRow.appendChild(dailyTotal);
-//         baristaTable.appendChild(baristaRow);
-//         for (var j = 0; j < hourOfOperation.length; j++) {
-//           var objectHolder = objectList[i]; //Brings in pikePlace instance
-//           var baristaNums = document.createElement('td'); //Creates new td
-//           baristaNums.textContent = objectHolder.employeesNeededPerHour[j]; //Puts baristaNums into td element
-//           baristaHourlyTotals[j] += parseInt(baristaNums.textContent);
-//           baristaDailyTotals[i] += parseInt(baristaNums.textContent);
-//           baristaRow.appendChild(baristaNums); //Appends the td to the row
-//         }
-//         dailyTotal.textContent = baristaDailyTotals[i];
-//       }
-//     };
-//     baristaTableData();
-//
-//     var baristaTableFooter = function () {
-//       var totalsRow = document.createElement('tr');
-//       var total = document.createElement('td');
-//       var companyTotal = document.createElement('td');
-//       for (i = 0; i < baristaDailyTotals.length; i++) {
-//         companyBaristaDailyTotal += baristaDailyTotals[i];
-//       }
-//       total.textContent = 'Totals:';
-//       totalsRow.appendChild(total);
-//       companyTotal.textContent = companyBaristaDailyTotal;
-//       totalsRow.appendChild(companyTotal);
-//       baristaTable.appendChild(totalsRow);
-//
-//       //Populates the totals row from the baristaHourlyTotals array
-//       for (var i = 0; i < hourOfOperation.length; i++) {
-//         var total = document.createElement('td');
-//         total.textContent = baristaHourlyTotals[i];
-//         totalsRow.appendChild(total);
-//       };
-//     };
-//     baristaTableFooter();
-//   };
-//   createBaristaTable();
-//   console.log(sectionElement);
-// };
+  // Render the Barista table
+  var createBaristaTable = function () {
+    baristaHourlyTotals = [];
+    baristaDailyTotals = [];
+    companyBaristaDailyTotal = 0;
+
+    var baristaTable = document.createElement('table'); // Creates table
+    baristaSection.appendChild(baristaTable); // Appends table to section
+
+    var baristaTableHeader = function () {
+      var timeRow = document.createElement('tr');
+      var emptyHead = document.createElement('th');
+      timeRow.appendChild(emptyHead);
+      var dailyLocationTotal = document.createElement('th');
+      dailyLocationTotal.textContent = 'Daily Location Total';
+      timeRow.appendChild(dailyLocationTotal);
+      baristaTable.appendChild(timeRow); // Appends the table row to the table
+
+      for (var i = 0; i < hourOfOperation.length; i++) {
+        var times = document.createElement('th');
+        times.textContent = hourOfOperation[i];
+        timeRow.appendChild(times); // Appends the header element to the table row
+      };
+    };
+    baristaTableHeader();
+
+    var baristaTableData = function () {
+      for (var i = 0; i < hourOfOperation.length; i++) { // Zeros out baristaArray
+        baristaHourlyTotals.push(0);
+      }
+      for (var i = 0; i < objectList.length; i++) {
+        baristaDailyTotals.push(0);
+      }
+      //prob going to have to zero an array
+      for (var i = 0; i < objectList.length; i++) {
+        var baristaRow = document.createElement('tr'); //Creates new row
+        var baristaLocation = document.createElement('td'); //Creates new td
+        baristaLocation.textContent = objectList[i].locationName; //Gives td locationName
+        baristaRow.appendChild(baristaLocation); //Appends td to new row
+        var dailyTotal = document.createElement('td'); //Creates baristaDailyTotal
+        //
+        baristaRow.appendChild(dailyTotal);
+        baristaTable.appendChild(baristaRow);
+        for (var j = 0; j < hourOfOperation.length; j++) {
+          var objectHolder = objectList[i]; //Brings in pikePlace instance
+          var baristaNums = document.createElement('td'); //Creates new td
+          baristaNums.textContent = objectHolder.employeesNeededPerHour[j]; //Puts baristaNums into td element
+          baristaHourlyTotals[j] += parseInt(baristaNums.textContent);
+          baristaDailyTotals[i] += parseInt(baristaNums.textContent);
+          baristaRow.appendChild(baristaNums); //Appends the td to the row
+        }
+        dailyTotal.textContent = baristaDailyTotals[i];
+      }
+    };
+    baristaTableData();
+
+    var baristaTableFooter = function () {
+      var totalsRow = document.createElement('tr');
+      var total = document.createElement('td');
+      var companyTotal = document.createElement('td');
+      for (i = 0; i < baristaDailyTotals.length; i++) {
+        companyBaristaDailyTotal += baristaDailyTotals[i];
+      }
+      total.textContent = 'Totals:';
+      totalsRow.appendChild(total);
+      companyTotal.textContent = companyBaristaDailyTotal;
+      totalsRow.appendChild(companyTotal);
+      baristaTable.appendChild(totalsRow);
+
+      //Populates the totals row from the baristaHourlyTotals array
+      for (var i = 0; i < hourOfOperation.length; i++) {
+        var total = document.createElement('td');
+        total.textContent = baristaHourlyTotals[i];
+        totalsRow.appendChild(total);
+      };
+    };
+    baristaTableFooter();
+  };
+  createBaristaTable();
+  console.log(baristaSection);
 
   var createBeanTable = function () {
     beanHourlyTotals = [];
@@ -218,7 +206,7 @@ function createNewStore(event) {
     companyBeanDailyTotal = 0;
 
     var beanTable = document.createElement('table'); // Creates table
-    sectionElement.appendChild(beanTable); // Appends table to section
+    beanSection.appendChild(beanTable); // Appends table to section
 
     var beanTableHeader = function () {
       var timeRow = document.createElement('tr');
@@ -257,7 +245,7 @@ function createNewStore(event) {
         for (var j = 0; j < hourOfOperation.length; j++) {
           var objectHolder = objectList[i]; //Brings in pikePlace instance
           var beanNums = document.createElement('td'); //Creates new td
-          beanNums.textContent = objectHolder.employeesNeededPerHour[j]; //Puts beanNums into td element
+          beanNums.textContent = Math.ceil(objectHolder.toGoBeansPerHour[j]); //Puts beanNums into td element
           beanHourlyTotals[j] += parseInt(beanNums.textContent);
           beanDailyTotals[i] += parseInt(beanNums.textContent);
           beanRow.appendChild(beanNums); //Appends the td to the row
@@ -290,5 +278,5 @@ function createNewStore(event) {
     beanTableFooter();
   };
   createBeanTable();
-  console.log(sectionElement);
+  console.log(beanSection);
 };
