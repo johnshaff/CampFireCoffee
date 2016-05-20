@@ -1,21 +1,18 @@
 //All global variables
 var hourOfOperation = ['6:00am: ', '7:00am: ', '8:00am: ', '9:00am: ', '10:00am: ', '11:00am: ', '12:00pm: ', '1:00pm: ', '2:00pm: ', '3:00pm: ', '4:00pm: ', '5:00pm: ', '6:00pm: ', '7:00pm: ', '8:00pm: '];
-//Gonna need to add 'text' 0 element, and then change all counters.
 var locationsList = [];
 var hourlyEmpTotals = [];
 var hourlyBeanTotals = [];
-
 var objectList = [];
 
 // var beanHourlyTotals = [];
 // var beanDailyTotals = [];
 // var companyBeanDailyTotal = 0;
 
-var submitButton = document.getElementById('coffeeForm'); //Strange that I have to use the form ID istead of the button ID. This upsetifies me.
+var submitButton = document.getElementById('coffeeForm'); //Strange. This upsetifies me.
 var sectionElement = document.getElementById('Pin'); //Grabs section
-// var beansTable = document.createElement('table'); //Creates table
 
-//Constructor Funtion to create new coffee store locations
+//Constructor Funtion
 function Locations (locationName, minCustomersHour, maxCustomersHour, cupsPerCustomer, lbsPerCustomerToGoBeans) {
   this.locationName = locationName;
   this.minCustomersHour = minCustomersHour;
@@ -94,7 +91,7 @@ var seattlePublicLibrary = new Locations ('Seattle Public Library', 9, 45, 2.6, 
 var southLakeUnion = new Locations ('South Lake Union', 5, 18, 1.3, .04);
 var seaTacAirport = new Locations ('Sea-Tac Airport', 28, 44, 1.1, .41);
 
-//Calls a method for each object that calculates daily demand projections
+//Runs allCalcs method on these instances to calc daily demand projections
 pikePlace.allCalcs();
 capitolHill.allCalcs();
 seattlePublicLibrary.allCalcs();
@@ -104,10 +101,9 @@ seaTacAirport.allCalcs();
 //Declare an event listener
 submitButton.addEventListener('submit', createNewStore);
 
-//Submit Event Handler that creates a new instance from form fields, creates two new row, and appends rows to tables
+//Submit Event Handler. Takes in form field data and renders two tables.
 function createNewStore(event) {
-  event.preventDefault(); // This prevents my page from reloading
-  // console.log('suuuup');
+  event.preventDefault();
   sectionElement.textContent = '';
   sectionElement = document.getElementById('Pin');
 
@@ -134,14 +130,14 @@ function createNewStore(event) {
   event.target.cupsPerCustomer.value = null;
   event.target.lbsPerCustomerToGoBeans.value = null;
 
-  // Render the Barista table
+  //Render the Barista table
   var createBaristaTable = function () {
     baristaHourlyTotals = [];
     baristaDailyTotals = [];
     companyBaristaDailyTotal = 0;
 
-    var baristaTable = document.createElement('table'); //Creates table
-    sectionElement.appendChild(baristaTable); //Appends table to section
+    var baristaTable = document.createElement('table'); // Creates table
+    sectionElement.appendChild(baristaTable); // Appends table to section
 
     var baristaTableHeader = function () {
       var timeRow = document.createElement('tr');
@@ -152,16 +148,16 @@ function createNewStore(event) {
       timeRow.appendChild(dailyLocationTotal);
       baristaTable.appendChild(timeRow); // Appends the table row to the table
 
-      for (var i = 0; i < hourOfOperation.length; i++) { // Sets conditional counter to the number of operating hours
-        var times = document.createElement('th'); // Creates a new table header element
-        times.textContent = hourOfOperation[i]; // Sets the value of that new header element to an hour of operation
+      for (var i = 0; i < hourOfOperation.length; i++) {
+        var times = document.createElement('th');
+        times.textContent = hourOfOperation[i];
         timeRow.appendChild(times); // Appends the header element to the table row
       };
     };
     baristaTableHeader();
 
     var baristaTableData = function () {
-      for (var i = 0; i < hourOfOperation.length; i++) { //Zeros out baristaArray
+      for (var i = 0; i < hourOfOperation.length; i++) { // Zeros out baristaArray
         baristaHourlyTotals.push(0);
       }
       for (var i = 0; i < objectList.length; i++) {
@@ -183,13 +179,12 @@ function createNewStore(event) {
           baristaNums.textContent = objectHolder.employeesNeededPerHour[j]; //Puts baristaNums into td element
           baristaHourlyTotals[j] += parseInt(baristaNums.textContent);
           baristaDailyTotals[i] += parseInt(baristaNums.textContent);
-          //probably going to have to do daily totals work
           baristaRow.appendChild(baristaNums); //Appends the td to the row
         }
         dailyTotal.textContent = baristaDailyTotals[i];
       }
     };
-    baristaTableData(); // I can set this to a var and clear the var if I want.
+    baristaTableData(); 
 
     var baristaTableFooter = function () {
       var totalsRow = document.createElement('tr');
