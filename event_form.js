@@ -6,14 +6,14 @@ var hourlyEmpTotals = [];
 var hourlyBeanTotals = [];
 
 var objectList = [];
-var baristaHourlyTotals = [];
-var baristaDailyTotals = [];
-var companyBaristaDailyTotal = 0;
+
 // var beanHourlyTotals = [];
 // var beanDailyTotals = [];
 // var companyBeanDailyTotal = 0;
 
-var submitButton = document.getElementById('coffeeForm');
+var submitButton = document.getElementById('coffeeForm'); //Strange that I have to use the form ID istead of the button ID. This upsetifies me.
+var sectionElement = document.getElementById('Pin'); //Grabs section
+// var beansTable = document.createElement('table'); //Creates table
 
 //Constructor Funtion to create new coffee store locations
 function Locations (locationName, minCustomersHour, maxCustomersHour, cupsPerCustomer, lbsPerCustomerToGoBeans) {
@@ -107,21 +107,23 @@ submitButton.addEventListener('submit', createNewStore);
 //Submit Event Handler that creates a new instance from form fields, creates two new row, and appends rows to tables
 function createNewStore(event) {
   event.preventDefault(); // This prevents my page from reloading
-  console.log('suuuup');
-  console.log(event); // This logs the entire event to the console
+  // console.log('suuuup');
+  sectionElement.textContent = '';
+  sectionElement = document.getElementById('Pin');
 
   if (!event.target.locationName.value || !event.target.minCustomersHour.value || !event.target.maxCustomersHour.value || !event.target.cupsPerCustomer.value || !event.target.lbsPerCustomerToGoBeans.value) {
     return alert('Please complete all fields');
   }
 
   var locationName = event.target.locationName.value; // For a number = parseInt(event.target.who.value);
-  var minCustomersHour = event.target.minCustomersHour.value;
-  var maxCustomersHour = event.target.maxCustomersHour.value;
-  var cupsPerCustomer = event.target.cupsPerCustomer.value;
-  var lbsPerCustomerToGoBeans = event.target.lbsPerCustomerToGoBeans.value;
+  var minCustomersHour = parseInt(event.target.minCustomersHour.value);
+  var maxCustomersHour = parseInt(event.target.maxCustomersHour.value);
+  var cupsPerCustomer = parseInt(event.target.cupsPerCustomer.value);
+  var lbsPerCustomerToGoBeans = parseInt(event.target.lbsPerCustomerToGoBeans.value);
 
   var newStore = new Locations (locationName, minCustomersHour, maxCustomersHour, cupsPerCustomer, lbsPerCustomerToGoBeans);
   newStore.allCalcs();
+  console.log();
 
   console.log('User just created new store ' + event.target.locationName.value);
 
@@ -134,8 +136,12 @@ function createNewStore(event) {
 
   // Render the Barista table
   var createBaristaTable = function () {
-    var SectionElement = document.getElementById('Pin'); //Grabs section
+    baristaHourlyTotals = [];
+    baristaDailyTotals = [];
+    companyBaristaDailyTotal = 0;
+
     var baristaTable = document.createElement('table'); //Creates table
+    sectionElement.appendChild(baristaTable); //Appends table to section
 
     var baristaTableHeader = function () {
       var timeRow = document.createElement('tr');
@@ -155,7 +161,6 @@ function createNewStore(event) {
     baristaTableHeader();
 
     var baristaTableData = function () {
-      SectionElement.appendChild(baristaTable); //Appends table to section
       for (var i = 0; i < hourOfOperation.length; i++) { //Zeros out baristaArray
         baristaHourlyTotals.push(0);
       }
@@ -173,7 +178,6 @@ function createNewStore(event) {
         baristaRow.appendChild(dailyTotal);
         baristaTable.appendChild(baristaRow);
         for (var j = 0; j < hourOfOperation.length; j++) {
-          console.log('cents is 25 cents away from a dollar!');
           var objectHolder = objectList[i]; //Brings in pikePlace instance
           var baristaNums = document.createElement('td'); //Creates new td
           baristaNums.textContent = objectHolder.employeesNeededPerHour[j]; //Puts baristaNums into td element
@@ -210,6 +214,5 @@ function createNewStore(event) {
     baristaTableFooter();
   };
   createBaristaTable();
-  createBaristaTable = null;
-  console.log(createBaristaTable);
+  console.log(sectionElement);
 };
