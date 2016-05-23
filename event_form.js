@@ -143,6 +143,7 @@ var createBaristaTable = function () {
 
   var baristaTableFooter = function () {
     var totalsRow = document.createElement('tr');
+    totalsRow.setAttribute('id', 'totalsRow');
     var total = document.createElement('td');
     var companyTotal = document.createElement('td');
     for (i = 0; i < baristaDailyTotals.length; i++) {
@@ -270,6 +271,27 @@ function createNewStore(event) {
   var newStore = new Locations (locationName, minCustomersHour, maxCustomersHour, cupsPerCustomer, lbsPerCustomerToGoBeans);
   newStore.allCalcs();
   console.log();
+
+  //Clear foot row
+  var clearFooter = document.getElementById('totalsRow');
+  clearFooter.textContent = '';
+  var baristaRow = document.createElement('tr'); //Creates new row
+  var baristaLocation = document.createElement('td'); //Creates new td
+  baristaLocation.textContent = event.target.locationName.value; //Gives td locationName
+  baristaRow.appendChild(baristaLocation); //Appends td to new row
+  var dailyTotal = document.createElement('td'); //Creates baristaDailyTotal
+  baristaRow.appendChild(dailyTotal);
+  baristaTable.appendChild(baristaRow);
+  for (var j = 0; j < hourOfOperation.length; j++) {
+    // var objectHolder = objectList[i]; //Brings in pikePlace instance
+    var baristaNums = document.createElement('td'); //Creates new td
+    baristaNums.textContent = objectList[objectList.length-1].employeesNeededPerHour[j]; //Puts baristaNums into td element
+    baristaHourlyTotals[j] += parseInt(baristaNums.textContent);
+    baristaDailyTotals[i] += parseInt(baristaNums.textContent);
+    baristaRow.appendChild(baristaNums); //Appends the td to the row
+  }
+  dailyTotal.textContent = baristaDailyTotals[i];
+  baristaTableFooter();
 
 
 
