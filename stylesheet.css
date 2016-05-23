@@ -1,7 +1,70 @@
-#Pin {
-  color: #cc0000;
+body {
+  margin: 0 auto;
+  max-width: 901px;
+  background-image: url(https://www.nyfa.edu/student-resources/wp-content/uploads/2014/12/apocalypsenow-01.jpg);
 }
 
-table, td {
-  border: 2px solid black;
+main {
+  padding: 1em;
+  background-color: white;
+}
+
+hgroup {
+  color: #585858;
+  font-family: verdana;
+}
+
+ul {
+  font-family: verdana;
+  color: #585858;
+}
+
+
+.content {
+  color: #585858;
+  font-family: verdana;
+  margin-left: 1em;
+  margin-bottom: 2em;
+}
+
+
+.left-column {
+  float:left;
+  width:30%;
+
+  max-height: 175px;
+}
+
+.left-column img {
+  max-width:100%;
+  max-height:100%;
+  margin:auto;
+  display:block;
+}
+
+.right-column {
+  float:right;
+  width:30%;
+  max-height: 175px;
+  background-color:green;
+}
+
+.right-column img {
+  max-width:100%;
+  max-height:100%;
+  margin:auto;
+  display:block;
+}
+
+.center-column {
+  margin:auto;
+  width:30%;
+  background-color:blue;
+}
+
+.center-column img {
+  max-width:100%;
+  max-height:100%;
+  margin:auto;
+  display:block;
 }
